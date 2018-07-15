@@ -1,0 +1,9 @@
+API Project: Interfaceable chat bot and Web requests
+Programmer Team : AdrianMisty
+Part 1 :
++ Make Web Requests to Receive Data (REST). Java Program will need to parse the JSON to make use of the data. 
++ Weather API and one of your choosing
+Part 2 :
++ Chatserver that will be used is called FreeNode. 
++ When the bot’s connected to the group chat it should read the messages and when a message matches a command it respond accordingly. 
++ The bot should return parse the words and query the weather API and return the information in an IRC-friendly format
