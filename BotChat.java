@@ -36,4 +36,14 @@ public class BotChat extends PircBot {
 		        String time = new java.util.Date( ).toString( );
 		        sendMessage(channel,"You best watch yourself, "+ sender);    
 	}
-}}
+	//Twitter API
+	  		if(message.equalsIgnoreCase("twitter") || message.contains("twitter") || message.matches("twitter") || message.equalsIgnoreCase("timeline") || message.endsWith("timeline") ){
+	  			TwitterAPI.main(null);
+	  			//sends message to the server
+	  			sendMessage(channel, sender + " Timeline:");
+	  			for(int i = 0; i < TwitterAPI.names.size(); i++){
+	  				sendMessage(channel, sender + " @" + TwitterAPI.names.get(i) + " : " + TwitterAPI.stats.get(i));
+	  			}
+		}
+	}
+}
