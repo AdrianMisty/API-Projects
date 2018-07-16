@@ -1,8 +1,8 @@
 // Name : AdrianMisty
 // 07-01-2018
 
-import org.jibble.pircbot.*;
 import java.text.DecimalFormat;
+import org.jibble.pircbot.*;
 
 public class BotChat extends PircBot {
 	
@@ -11,27 +11,29 @@ public class BotChat extends PircBot {
 	}
 	//checks message and then does the following
 	public void onMessage(String channel, String sender, String login, String hostname, String message){
-		//Weather API
 		if(message.equalsIgnoreCase("weather")|| message.contains("weather")){
-			WeatherAPI.city = "Galveston";
+			TestAPI.city = "Galveston";
 			//calling WeatherAPI's main method
-			WeatherAPI.main(null);
+			TestAPI.main(null);
+			//format temperature 
 			DecimalFormat df = new DecimalFormat("#.##");
-			String Temperature = df.format(WeatherAPI.parseTemp(WeatherAPI.answer.toString()));
-			sendMessage(channel, " : You wish to know the weather? : The current temperature is : "+ Temperature + " °F." );
+			String cur = df.format(TestAPI.parseJson(TestAPI.answer.toString()));
+			sendMessage(channel, " : Weather : The current temperature is : "+ cur + " °F." );
 		}
-		//For Time
 		if (message.equalsIgnoreCase("time")|| message.contains("time")) {
 	        String time = new java.util.Date( ).toString( );
 	        sendMessage(channel, sender + ": The time is " + time);
 	    }
-		//Conversation
-		if (message.equalsIgnoreCase("hello")|| message.contains("hello")) {
+		if (message.equalsIgnoreCase("hello")|| message.contains("Hi")|| message.contains("Hello")) {
 	        String time = new java.util.Date( ).toString( );
-	        sendMessage(channel,"Hello!, "+ sender);
+	        sendMessage(channel,"Hello! "+ sender);
 	    }
-		if (message.equalsIgnoreCase("what")|| message.contains("what")) {
+		if (message.equalsIgnoreCase("WOAH")|| message.contains("woah")|| message.contains("Woah")) {
 	        String time = new java.util.Date( ).toString( );
-	        sendMessage(channel,"Good question!, "+ sender);
+	        sendMessage(channel,"Woah! yourself, "+ sender);
+	        }
+	    if (message.equalsIgnoreCase("hey")|| message.contains("What's up")|| message.contains("Hey")) {
+		        String time = new java.util.Date( ).toString( );
+		        sendMessage(channel,"You best watch yourself, "+ sender);    
 	}
-}
+}}
