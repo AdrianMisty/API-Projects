@@ -19,7 +19,7 @@ public class WeatherAPI {
 	public static void main(String[] args) {
 	     try {
             // user inputs city name to find it's current weather data
-	     String weatherURL = "https://samples.openweathermap.org/data/2.5/weather?q=" + city + ",us&appid=b6907d289e10d714a6e88b30761fae22";
+	     String weatherURL = "https://api.openweathermap.org/data/2.5/weather?q=" + city + ",us&appid=b6907d289e10d714a6e88b30761fae22";
 	     answer = new StringBuilder();
              URL url = new URL(weatherURL);
 	     //get request
