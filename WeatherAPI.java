@@ -2,7 +2,6 @@
 // Weather API 
 // 6/28/2018 - 7/14/2018
 
-import java.util.Scanner;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -13,37 +12,40 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 
 public class WeatherAPI {
+	//variables that will be used : static 
 	static String city;
 	static StringBuilder answer;
 
 	public static void main(String[] args) {
-		try {
+	     try {
             // user inputs city name to find it's current weather data
-			String weatherURL = "https://samples.openweathermap.org/data/2.5/weather?q=" + city + ",us&appid=b6907d289e10d714a6e88b30761fae22";
-			answer = new StringBuilder();
-			URL url = new URL(weatherURL);
-			HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-			conn.setRequestMethod("GET");
-			BufferedReader woot = new BufferedReader(new InputStreamReader(conn.getInputStream()));
-			String line;
-			while ((line = woot.readLine()) != null) {
-				answer.append(line);
+	     String weatherURL = "https://samples.openweathermap.org/data/2.5/weather?q=" + city + ",us&appid=b6907d289e10d714a6e88b30761fae22";
+	     answer = new StringBuilder();
+             URL url = new URL(weatherURL);
+	     //get request
+	     HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+             conn.setRequestMethod("GET");
+             // use bufferedreader to read URL content
+	     BufferedReader woot = new BufferedReader(new InputStreamReader(conn.getInputStream()));
+	     String line;//read output
+		while ((line = woot.readLine()) != null) {
+			answer.append(line);
 			}
-			woot.close();
-		} catch (IOException e) {
+		    woot.close();
+	         } catch (IOException e) {
 			e.printStackTrace();
-		}
-	}
-
+		 }
+	      }
 	// Current Temperature
-	static double parseTemp(String json) {
-		JsonElement jelement = new JsonParser().parse(json);
-		JsonObject MasterWeatherObject = jelement.getAsJsonObject();
-		JsonObject mainObject = MasterWeatherObject.getAsJsonObject("main");
-		double temp = mainObject.get("temp").getAsDouble();
-		double tempF = temp * 9 / 5 - 459.67;
-		// Double minT = minTempF;
-		return tempF;
+	static double parseJson(String json) {
+        JsonElement jelement = new JsonParser().parse(json);
+        JsonObject  MasterWeatherObject = jelement.getAsJsonObject();
+    
+        JsonObject mainObject = MasterWeatherObject.getAsJsonObject("main"); //type this exactly as it appears in the JSON response
+        double temper = mainObject.get("temp").getAsDouble();  //type exactly, type case matters!
+        double temperFinal = temper * 9 / 5 - 459.67;
+	//return the temperature
+	return temperFinal;
 	}
 
 }
