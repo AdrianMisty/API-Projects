@@ -38,11 +38,10 @@ public class WeatherAPI {
 	      }
 	// Current Temperature
 	static double parseJson(String json) {
-        JsonElement jelement = new JsonParser().parse(json);
-        JsonObject  MasterWeatherObject = jelement.getAsJsonObject();
-    
-        JsonObject mainObject = MasterWeatherObject.getAsJsonObject("main"); //type this exactly as it appears in the JSON response
-        double temper = mainObject.get("temp").getAsDouble();  //type exactly, type case matters!
+        JsonElement jelem = new JsonParser().parse(json);
+        JsonObject MasterWeatherObj = jelem.getAsJsonObject();
+        JsonObject mainObj = MasterWeatherObj.getAsJsonObject("main"); 
+        double temper = mainObj.get("temp").getAsDouble();  
         double temperFinal = temper * 9 / 5 - 459.67;
 	//return the temperature
 	return temperFinal;
