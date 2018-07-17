@@ -10,14 +10,14 @@ public class TwitterAPI {
 	static ArrayList<String> stats;
 	static ArrayList<String> names;
 	public static void main(String[] args){
-		//OAuth
-		Twitter twitter = new TwitterFactory().getInstance();
-		twitter.setOAuthConsumer("oG16G5RriwlGDLQcfxwz10bOn", "CXpwxZSVowI1tWxrXfedOMftkPuLwW1KxgGEvRF6MkTZECco7D");
-		twitter.setOAuthAccessToken(new AccessToken("1881491874-U9LpvlNzOmozCsB9dlVv1GaF3jBjaZHe0WZwsr4","RtuNFU7CxGPJmFKVrH234x58araYm8zZqipg5LgLmSn2N"));
+		//OAuth.com tokens 
+	Twitter twitter = new TwitterFactory().getInstance();
+	twitter.setOAuthConsumer("zzzbchYL7x58V2fRnyUZa2wWI","TSVYHCZhy8p1xJcuYR64nAsgr8P5YfsNzaI63AKfijKLsgBGUl");		
+	twitter.setOAuthAccessToken(new AccessToken());
 		
-		try {
-            //verify credentials
-            User kota = twitter.verifyCredentials();
+	try {
+            //verify my credentials
+            User koala = twitter.verifyCredentials();
             ResponseList<Status> statuses = twitter.getHomeTimeline();
             //using arraylists to  send messages easier
             stats = new ArrayList<String>();
