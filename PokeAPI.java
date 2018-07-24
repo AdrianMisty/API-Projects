@@ -46,7 +46,7 @@ public class PokeAPI
 		}
 		catch(Exception e){return "Error! Exception: " + e;}
 	}
-	
+
 	static String parseJson(String json) {
 		String x;
         JsonElement PokeLement = new JsonParser().parse(json);
