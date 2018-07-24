@@ -1,25 +1,25 @@
+/*Name : Adriana Alva
+ * Class : CS 2336
+ */
 import java.io.BufferedReader;
-import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
-import java.util.Scanner;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 
-
-public class PokeAPI
+public class WeathAPI
 {
 	static String city;
 	static StringBuilder answer;
 	public static void main(String[] args) {
-		PokeRequest("1");
+		WeatherGetter("Dallas");
 		
 	}
 	
-	static String PokeRequest(String city){
-		String weatherURL = "http://pokeapi.co/api/v2/pokemon/1/";
+	static String WeatherGetter(String city){
+		String weatherURL = "http://api.openweathermap.org/data/2.5/weather?q=" + city + "&APPID=2045126796536689aa40d7f7d49fd496";
 		answer = new StringBuilder(); //will hold the java String after converting from JSON 
 		double response = 200;
 		try {	
@@ -34,26 +34,22 @@ public class PokeAPI
 		    		answer.append(line);
 		    	}
 		    rd.close();
-
 		    //what do we want to search the API for?
-		    System.out.println("Who's that pokemon? ");
-		    
-		   String poke = parseJson(answer.toString());
-		    
-		    System.out.println("It's " + poke + "!");
-		    
-		    return answer.toString();
+		    System.out.println("Here is information for the weather within "+city);
+		    double temp = parseJson(answer.toString());
+		    System.out.println("Temperature is currently: " + temp + ".");
+		     return answer.toString();
 		}
 		catch(Exception e){return "Error! Exception: " + e;}
 	}
-	
-	static String parseJson(String json) {
-		String x;
-        JsonElement PokeLement = new JsonParser().parse(json);
-        JsonObject  PokeObj = PokeLement.getAsJsonObject();
-        JsonObject speciesObj = PokeObj.getAsJsonObject("form"); 
-        String name = speciesObj.get("name").getAsString(); 
-       
-	return name;
+	//get temperature and change format
+	static double parseJson(String json) {
+        JsonElement jelem = new JsonParser().parse(json);
+        JsonObject  MasterWeatherObj = jelem.getAsJsonObject();
+        JsonObject mainObj = MasterWeatherObj.getAsJsonObject("main"); 
+        double tempmin = mainObj.get("temp").getAsDouble(); 
+        double temp = tempmin * 9 / 5 - 459.67;
+        
+	return temp;
 }
 	}
