@@ -14,12 +14,12 @@ public class PokeAPI
 	static String city;
 	static StringBuilder answer;
 	public static void main(String[] args) {
-		WeatherRequest("1");
+		PokeRequest("1");
 		
 	}
 	
-	static String WeatherRequest(String city){
-		String weatherURL = "http://pokeapi.co/api/v2/pokemon/"+city+"/";
+	static String PokeRequest(String city){
+		String PokeURL = "http://pokeapi.co/api/v2/pokemon/"+city+"/";
 		answer = new StringBuilder(); //will hold the java String after converting from JSON 
 		double response = 101;
 		try {	
